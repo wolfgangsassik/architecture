@@ -18,15 +18,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
-        run: docker run --rm -v docs/:/docs/ ghcr.io/wolfgangsassik/sphinx-builder:latest
+        run: docker run --rm -v ./docs/:/docs/ ghcr.io/wolfgangsassik/sphinx-builder:latest
       - name: Fix permissions
         run: |
-          chmod -c -R +rX "docs/_build/" | while read line; do
+          chmod -c -R +rX "./docs/_build/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/_build/
+          path: ./docs/_build/
 
   deploy:
     needs: build
