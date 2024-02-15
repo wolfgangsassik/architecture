@@ -17,7 +17,6 @@ jobs:
         password: ${{ secrets.github_token }}
       volumes:
         - ./docs/:/docs/
-      options: --user user
     steps:
       - uses: actions/checkout@v4
       - uses: docker/login-action@v3
