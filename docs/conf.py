@@ -16,9 +16,9 @@ import os
 
 # -- Project information -----------------------------------------------------
 
-project = 'MVP PK BEG Cloud Definition'
-copyright = '2022, Bosch Engineering GmbH'
-author = 'Bosch Engineering GmbH'
+project = 'Arc42 Demo Architecture'
+copyright = '2024, Bosch Engineering GmbH'
+author = 'Wolfgang Kroell-Sassik'
 
 # The full version, including alpha/beta/rc tags
 release = '0.0.1'
