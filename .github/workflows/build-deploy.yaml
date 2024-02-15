@@ -18,7 +18,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
-        run: docker run --rm -v ./docs/:/docs/ ghcr.io/wolfgangsassik/sphinx-builder:latest
+        run: docker run --rm -u 1001 -v ./docs/:/docs/ ghcr.io/wolfgangsassik/sphinx-builder:latest
       - name: Fix permissions
         run: |
           chmod -c -R +rX "./docs/_build/" | while read line; do
