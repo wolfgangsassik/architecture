@@ -35,4 +35,4 @@ contributors. See https://arc42.org.
    09-ArchitectureDecisions/index.rst
    10-QualityRequirements/index.rst
    11-RisksAndTechnicalDept/index.rst
-   12-Glossar/index.rst
+   12-Glossary/index.rst
