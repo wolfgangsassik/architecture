@@ -11,8 +11,10 @@ jobs:
     permissions:
       packages: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Login to ghcr.io
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -24,9 +26,10 @@ jobs:
           chmod -c -R +rX "./docs/_build/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs/_build/
+          path: ./docs/_build/html/
   deploy:
     needs: build
     runs-on: ubuntu-latest
