@@ -1,5 +1,5 @@
-CoG Data Strategy - Architecture Documentation
-==============================================
+Arc42 Demo Architecture
+=======================
 
 **About arc42**
 
@@ -34,5 +34,5 @@ contributors. See https://arc42.org.
    08-CrossCuttingConcepts/index.rst
    09-ArchitectureDecisions/index.rst
    10-QualityRequirements/index.rst
-   12-Glossar/index.rst
    11-RisksAndTechnicalDept/index.rst
+   12-Glossar/index.rst

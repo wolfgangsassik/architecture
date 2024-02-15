@@ -18,7 +18,6 @@ import os
 
 project = 'Arc42 Demo Architecture'
 copyright = '2024, Bosch Engineering GmbH'
-author = 'Wolfgang Kroell-Sassik'
 
 # The full version, including alpha/beta/rc tags
 release = '0.0.1'
