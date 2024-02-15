@@ -10,13 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: read
-    container:
-      image: ghcr.io/wolfgangsassik/sphinx-builder:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
-      volumes:
-        - ./docs/:/docs/
     steps:
       - uses: actions/checkout@v4
       - uses: docker/login-action@v3
@@ -25,8 +18,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
-        working-directory: $GITHUB_WORKSPACE/docs
-        run: sphinx-build -M html . _build
+        run: docker run --rm -v ./docs/:/docs/ ghcr.io/wolfgangsassik/sphinx-builder:latest
       - name: Fix permissions
         run: |
           chmod -c -R +rX "./docs/_build/" | while read line; do
@@ -35,6 +27,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./docs/_build/
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
