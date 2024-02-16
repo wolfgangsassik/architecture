@@ -25,16 +25,16 @@ jobs:
       - name: Pull
         run: docker pull ${SPHINX_BUILDER_IMAGE}
       - name: Build
-        run: docker run --rm -u 1001 -v ./:/docs/ ${SPHINX_BUILDER_IMAGE} make html
+        run: docker run --rm -u 1001 -v ./docs/:/docs/ ${SPHINX_BUILDER_IMAGE} make html
       - name: Fix permissions
         run: |
-          chmod -c -R +rX "./_build/" | while read line; do
+          chmod -c -R +rX "./docs/_build/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_build/html/
+          path: ./docs/_build/html/
   deploy:
     needs: build
     runs-on: ubuntu-latest
