@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: structurizr-build
-          path: /usr/local/structurizr/_build/
+          path: workspaces/_build/
   sphinx-build:
     needs: structurizr-build
     runs-on: ubuntu-latest
