@@ -11,7 +11,7 @@ Template Version 8.2 EN. (based upon AsciiDoc version), January 2023
 Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and
 contributors. See https://arc42.org.
 
-.. uml:: images/demo.puml
+.. uml:: workspaces/foo/structurizr-Container-001.puml
 
 .. note::
 

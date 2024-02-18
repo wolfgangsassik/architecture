@@ -4,7 +4,8 @@
 # You can set these variables from the command line, and also
 # from the environment for the first two.
 SPHINXOPTS    ?=
-SPHINXBUILD   ?= sphinx-build
+SPHINXIMAGE   ?= ghcr.io/wolfgangsassik/sphinx-builder:latest
+SPHINXBUILD   ?= docker run --rm -v $(PWD):/docs/ -v $(PWD)/../workspaces/_build:/docs/workspaces $(SPHINXIMAGE) sphinx-build
 SOURCEDIR     = .
 BUILDDIR      = _build
 
