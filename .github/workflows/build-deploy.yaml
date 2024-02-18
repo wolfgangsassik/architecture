@@ -21,7 +21,7 @@ jobs:
         run: |
           for FILE in workspaces/*.dsl; do \
             docker run --rm -u 1001 -v ./workspaces/:/usr/local/structurizr/ ${STRUCTURIZR_BUILDER_IMAGE} \
-              export -workspace $(basename $FILE) -format plantuml -output ./_build/$(basename -s .dsl $FILE) \
+              export -workspace $(basename $FILE) -format plantuml -output ./_build/$(basename -s .dsl $FILE); \
           done
       - name: Upload structurizr-build artifact
         uses: actions/upload-artifact@v4
