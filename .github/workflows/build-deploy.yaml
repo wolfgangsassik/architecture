@@ -20,7 +20,7 @@ jobs:
       - name: Build
         run: |
           for FILE in workspaces/*.dsl; do \
-            docker run --rm -u 1001 -v ./workspaces/:/usr/local/structurizr/ ${STRUCTURIZR_BUILDER_IMAGE} \
+            docker run --rm -u 1001 -v workspaces/:/usr/local/structurizr/ ${STRUCTURIZR_BUILDER_IMAGE} \
               export -workspace $(basename $FILE) -format plantuml -output ./_build/$(basename -s .dsl $FILE); \
           done
       - name: Upload structurizr-build artifact
@@ -38,7 +38,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: structurizr-build
-          path: ./docs/workspaces/
+          path: workspaces/_build/
       - name: Login to ghcr.io
         uses: docker/login-action@v3
         with:
@@ -48,7 +48,7 @@ jobs:
       - name: Pull
         run: docker pull ${SPHINX_BUILDER_IMAGE}
       - name: Build
-        run: docker run --rm -u 1001 -v ./docs/:/docs/ ${SPHINX_BUILDER_IMAGE} make html
+        run: docker run --rm -u 1001 -v docs/:/docs/ ${SPHINX_BUILDER_IMAGE} make html
       - name: Fix permissions
         run: |
           chmod -c -R +rX "./docs/_build/" | while read line; do
@@ -57,7 +57,7 @@ jobs:
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs/_build/html/
+          path: docs/_build/html/
   deploy:
     needs: sphinx-build
     runs-on: ubuntu-latest
