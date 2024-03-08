@@ -29,7 +29,8 @@ release = '0.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-  "sphinxcontrib.plantuml"
+  "sphinxcontrib.plantuml",
+  "sphinxcontrib.confluencebuilder"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,3 +53,21 @@ html_theme = 'furo'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 #html_static_path = ['_static']
+
+
+# -- Options for Confluence output -------------------------------------------------
+
+# https://sphinxcontrib-confluencebuilder.readthedocs.io/en/stable/
+# https://sphinxcontrib-confluencebuilder.readthedocs.io/en/stable/configuration/
+
+# https://inside-docupedia.bosch.com/confluence/display/HILFE/REST+API+Access
+# https://inside-docupedia.bosch.com/confluence/plugins/servlet/restbrowser
+
+# Use envvars to set sensitive values (API keys)
+
+confluence_publish = False # Warning, setting this to true is not tested yet!!!
+confluence_space_key = 'BEGCOGDSE'
+confluence_parent_page = 'BEG Data Strategy - Engineering'
+confluence_server_url = 'https://inside-docupedia.bosch.com/confluence/'
+confluence_ask_user = True
+confluence_ask_password = True

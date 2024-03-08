@@ -10,11 +10,12 @@ Requirements to build locally
   - Ubuntu: `apt install python3-sphinx`
   - Mac: `brew install sphinx-doc`
   - Windows: `choco install sphinx`
-- PlantUML for Sphinx: `pip install -U sphinxcontrib-plantuml`
 - PlantUML: https://plantuml.com/en/download
   - Ubuntu: `apt install plantuml`
   - Mac: `brew install plantuml`
   - Windows: `choco install plantuml`
+- PlantUML for Sphinx: `pip install -U sphinxcontrib-plantuml`
+- (optional) Atlassian® Confluence® Builder for Sphinx: `pip install -U sphinxcontrib-confluencebuilder`
 
 
 How to build
