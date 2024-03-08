@@ -5,24 +5,25 @@ on:
     branches:
       - main
 
+env:
+  SPHINX_BUILDER_IMAGE: ghcr.io/wolfgangsassik/sphinx-builder:latest
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Setup Graphviz
-        uses: ts-graphviz/setup-graphviz@v2
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build
-        uses: ammaraskar/sphinx-action@master
+      - name: Login to ghcr.io
+        uses: docker/login-action@v3
         with:
-          docs-folder: .
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull
+        run: docker pull ${SPHINX_BUILDER_IMAGE}
+      - name: Build
+        run: docker run --rm -u 1001 -v ./:/docs/ ${SPHINX_BUILDER_IMAGE} make html
       - name: Fix permissions
         run: |
           chmod -c -R +rX "./_build/" | while read line; do
@@ -32,6 +33,16 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: _build/html/
+  deploy:
+    needs: sphinx-build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
